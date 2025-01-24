@@ -12,6 +12,7 @@ import Location from '@/layout/Location/Location.tsx';
 import AudioButton from './layout/Main/AudioButton';
 import Main from '@/layout/Main/Main.tsx';
 import Wrapper2 from './components/Wrapper2';
+import Gallery from './layout/Gallery';
 
 function App() {
   const ncpClientId = import.meta.env.VITE_APP_NAVERMAPS_CLIENT_ID;
@@ -51,10 +52,16 @@ function App() {
           <Heading1>모시는 글</Heading1>
           <Invitation />
         </Wrapper>
+
+        {/* 변경 전 갤러리 */}
         <Wrapper2 ref={galleryRef}>
           <Heading1>Gallery</Heading1>
           <GalleryWrap />
         </Wrapper2>
+
+        {/* 변경 후 갤러리 */}
+        <Gallery />
+        
         <Wrapper>
           <Heading1>마음 전하실 곳</Heading1>
           <Account />
