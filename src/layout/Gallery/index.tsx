@@ -101,8 +101,8 @@ export default function Gallery() {
             ))}
           </div>
         </div>
-        <button onClick={prev} className="absolute left-0 top-1/2 -translate-y-1/2 text-4xl text-white p-2.5 bg-black/50 hover:bg-black/80 cursor-pointer">❮</button>
-        <button onClick={next} className="absolute right-0 top-1/2 -translate-y-1/2 text-4xl text-white p-2.5 bg-black/50 hover:bg-black/80 cursor-pointer">❯</button>
+        <button onClick={prev} className="absolute left-0 top-1/2 -translate-y-1/2 text-4xl text-white p-2.5 bg-pink-100/50 hover:bg-pink-200/50 cursor-pointer">❮</button>
+        <button onClick={next} className="absolute right-0 top-1/2 -translate-y-1/2 text-4xl text-white p-2.5 bg-pink-100/50 hover:bg-pink-200/50 cursor-pointer">❯</button>
       </div>
     </div>
   );
