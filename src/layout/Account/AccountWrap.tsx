@@ -1,6 +1,4 @@
 import Copy from '@/assets/icons/copy.svg?react';
-import kakaopay from '@/assets/icons/kakaopay.webp?url';
-import toss from '@/assets/icons/toss.webp?url';
 
 interface IAccountProps {
   name: string;
@@ -15,8 +13,6 @@ const AccountWrap = ({
   relation,
   bank,
   account,
-  kakaopayAccount,
-  tossAccount,
 }: IAccountProps) => {
   const handleCopy = () => {
     navigator.clipboard.writeText(account).then(
@@ -41,7 +37,7 @@ const AccountWrap = ({
           &nbsp;
           <span>{account}</span>
         </div>
-        <button className='border-0 rounded-[5px] px-[0.1rem] py-[0.2rem] cursor-pointer gap-[2px] outline-0 shadow-none bg-white' onClick={handleCopy}>
+        <button className='rounded-[5px] px-[0.1rem] py-[0.2rem] cursor-pointer gap-[2px] bg-white' onClick={handleCopy}>
           <Copy fill="#dfdfdf" />
         </button>
       </div>
