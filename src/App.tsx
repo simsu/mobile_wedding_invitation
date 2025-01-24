@@ -5,13 +5,11 @@ import Wrapper from '@/components/Wrapper.tsx';
 import Account from '@/layout/Account/Account.tsx';
 import Container from '@/layout/Container.tsx';
 import FloatingBar from '@/layout/FloatingBar/FloatingBar.tsx';
-import GalleryWrap from '@/layout/Gallery/GalleryWrap.tsx';
 import Guestbook from '@/layout/Guestbook/Guestbook.tsx';
 import Invitation from '@/layout/Invitation/Invitation.tsx';
 import Location from '@/layout/Location/Location.tsx';
 import AudioButton from './layout/Main/AudioButton';
 import Main from '@/layout/Main/Main.tsx';
-import Wrapper2 from './components/Wrapper2';
 import Gallery from './layout/Gallery';
 
 function App() {
@@ -52,12 +50,6 @@ function App() {
           <Heading1>모시는 글</Heading1>
           <Invitation />
         </Wrapper>
-
-        {/* 변경 전 갤러리 */}
-        <Wrapper2 ref={galleryRef}>
-          <Heading1>Gallery</Heading1>
-          <GalleryWrap />
-        </Wrapper2>
 
         {/* 변경 후 갤러리 */}
         <Gallery />
