@@ -43,22 +43,22 @@
         {
           "name": "남현철",
           "relation": "신랑",
-          "bank": "토스뱅크",
+          "bank": "토스",
           "account": "1000-0981-7407",
           "kakaopayAccount": "",
           "tossAccount": ""
         },
         {
-          "name": "장아빠",
+          "name": "남동현",
           "relation": "아버지",
-          "bank": "농협",
-          "account": "123-45-678901"
+          "bank": "국민",
+          "account": "729202-01-060852"
         },
         {
-          "name": "이엄마",
+          "name": "김미진",
           "relation": "어머니",
-          "bank": "축협",
-          "account": "123-45-678901"
+          "bank": "농협",
+          "account": "455-12-120712"
         }
       ]
     },
@@ -68,10 +68,8 @@
         {
           "name": "심수연",
           "relation": "신부",
-          "bank": "토스뱅크",
-          "account": "1000-0982-2511",
-          "kakaopayAccount": "",
-          "tossAccount": ""
+          "bank": "토스",
+          "account": "1000-0982-2511"
         },
         {
           "name": "심인규",
