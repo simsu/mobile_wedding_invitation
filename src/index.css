@@ -56,3 +56,9 @@ body {
 @theme {
   --spacing-1em: 1em;
 }
+
+body, #root {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: content-box;
+}
