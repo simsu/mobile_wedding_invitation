@@ -1,7 +1,7 @@
 import { useRef, useState, CSSProperties, useEffect } from 'react';
 
 // 이미지 배열
-const _images = Array.from({ length: 11 }).fill(0).map((_, index) => `/img/${(index + 2).toString().padStart(2, '0')}.webp`);
+const _images = Array.from({ length: 21 }).fill(0).map((_, index) => `/img/${(index + 2).toString().padStart(2, '0')}.webp`);
 // 이미지 배열 앞 뒤로 trick 사진 추가. 1개씩만 했기 때문에 0.5초 이내에 광클하면 앞으로 돌아가는 효과가 나옴...
 const images = [_images[_images.length - 1], ..._images, _images[0]];
 
