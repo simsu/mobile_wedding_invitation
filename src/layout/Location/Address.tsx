@@ -5,7 +5,7 @@ import { ILocationInfo } from '@/types/data.ts';
 const Address = () => {
   const { locationInfo } = data;
   return (
-    <div className='flex flex-col items-start my-5 mx-0 gap-5'>
+    <div className='flex flex-col my-5 gap-5'>
       {locationInfo?.map((item: ILocationInfo) => {
         const { title, desc } = item;
         return (
