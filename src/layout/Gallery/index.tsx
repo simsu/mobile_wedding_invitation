@@ -94,7 +94,7 @@ export default function Gallery() {
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onTouchMove={handleTouchMove}
-          className="overflow-hidden w-full">
+          className="overflow-hidden w-full touch-pan-x">
           <div ref={ref} style={style} className="flex">
             {images.map((image, index) => (
               <img key={index} src={image} alt={`image ${index + 1}`} className="w-full h-full object-cover" />
