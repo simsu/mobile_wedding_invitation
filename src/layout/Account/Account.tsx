@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import data from 'data.json';
 import AccountWrap from './AccountWrap.tsx';
 import Accordion from '@/components/Accordion.tsx';
@@ -6,7 +5,7 @@ import Accordion from '@/components/Accordion.tsx';
 const Account = () => {
   const { hostInfo } = data;
   return (
-    <HostInfoWrapper>
+    <div className='flex w-[90%] flex-col py-5'>
       {hostInfo.map((host) => {
         return (
           <Accordion title={host.host} key={host.host}>
@@ -26,15 +25,8 @@ const Account = () => {
           </Accordion>
         );
       })}
-    </HostInfoWrapper>
+    </div>
   );
 };
 
 export default Account;
-
-const HostInfoWrapper = styled.div`
-  display: flex;
-  width: 90%;
-  flex-direction: column;
-  padding: 20px;
-`;
