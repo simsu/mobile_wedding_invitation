@@ -1,9 +1,12 @@
 import images from '@/layout/Gallery/Images.ts';
-import styled from '@emotion/styled';
 import { useEffect, useRef, useState } from 'react';
 
 interface divProps extends React.HTMLProps<HTMLDivElement> {
   children: React.ReactNode;
+}
+
+interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
+  children?: React.ReactNode;
 }
 
 const PhotoGallery = () => {
@@ -64,14 +67,18 @@ const PhotoGallery = () => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <SlideWrapper currentIndex={currentIndex}>
+      <div
+        className='flex w-full h-full transition-transform duration-500 ease-in-out'
+        style={{ 'transform': `translateX(-${Math.round(currentIndex * 100)}%)` }}
+      >
         {images.map((image, index) => (
-          <Slide
+          <div
+            className='shrink-0 w-full h-full bg-contain bg-no-repeat bg-center box-border'
             key={index}
             style={{ backgroundImage: `url(${image.source})` }}
           />
         ))}
-      </SlideWrapper>
+      </div>
       <Controls>
         <Button onClick={prevSlide}>❮</Button>
         <Button onClick={nextSlide}>❯</Button>
@@ -86,42 +93,14 @@ const SliderContainer = ({children}: divProps) => (
   </div>
 )
 
-const SlideWrapper = styled.div<{ currentIndex: number }>`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.5s ease-in-out;
-  transform: translateX(${(props) => `-${Math.round(props.currentIndex * 100)}%`});
-`;
-
-const Slide = styled.div`
-  flex-shrink: 0;
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  box-sizing: border-box;
-`;
-
-
 const Controls = ({children}: divProps) => (
   <div className='absolute top-[50%] w-full flex justify-between transform-[translateY(-50%)]'>{children}</div>
 )
 
-
-const Button = styled.button`
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 18px;
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.8);
-  }
-`;
-
+const Button = ({children}:ButtonProps) => (
+  <button className='bg-[rgba(0,0,0,0.5)] text-white border-0 p-[10px] cursor-pointer text-lg hover:bg-[rgba(0,0,0,0.8)]'>
+    
+  </button>
+)
 
 export default PhotoGallery;
