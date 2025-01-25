@@ -1,13 +1,13 @@
-import { useRef, useState, CSSProperties, useEffect } from 'react';
+import { useRef, useState, CSSProperties, useEffect, forwardRef } from 'react';
 
 // 이미지 배열
 const _images = Array.from({ length: 21 }).fill(0).map((_, index) => `/img/${(index + 2).toString().padStart(2, '0')}.webp`);
 // 이미지 배열 앞 뒤로 trick 사진 추가. 1개씩만 했기 때문에 0.5초 이내에 광클하면 앞으로 돌아가는 효과가 나옴...
 const images = [_images[_images.length - 1], ..._images, _images[0]];
 
-export default function Gallery() {
+export default forwardRef<HTMLDivElement>(function Gallery(_, ref) {
   // 터치 슬라이드 전용 ref
-  const ref = useRef<HTMLDivElement>(null);
+  const wrapper = useRef<HTMLDivElement>(null);
   // 슬라이드 스타일
   const [style, setStyle] = useState<CSSProperties>({
     transform: 'translateX(-100%)',
@@ -55,8 +55,8 @@ export default function Gallery() {
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (ref.current) {
-      const currentX = ref.current.clientWidth * -currentIndex;
+    if (wrapper.current) {
+      const currentX = wrapper.current.clientWidth * -currentIndex;
       const result = currentX + (e.targetTouches[0].pageX - touchStart);
       setStyle({
         transform: `translateX(${result}px)`,
@@ -87,7 +87,7 @@ export default function Gallery() {
   }, [currentIndex]);
 
   return (
-    <div className="pt-7 -mx-[30px] md:mx-5">
+    <div ref={ref} className="pt-7 -mx-[30px] md:mx-5">
       <p className="text-2xl text-[#e88ca6] font-[CookieRun]">Gallery</p>
       <div className="mt-[46px] relative">
         <div
@@ -95,7 +95,7 @@ export default function Gallery() {
           onTouchEnd={handleTouchEnd}
           onTouchMove={handleTouchMove}
           className="overflow-hidden w-full touch-pan-auto">
-          <div ref={ref} style={style} className="flex">
+          <div ref={wrapper} style={style} className="flex">
             {images.map((image, index) => (
               <img key={index} src={image} alt={`image ${index + 1}`} className="w-full h-full object-cover" />
             ))}
@@ -106,4 +106,4 @@ export default function Gallery() {
       </div>
     </div>
   );
-}
+});

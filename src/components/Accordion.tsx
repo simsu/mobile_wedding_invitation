@@ -1,5 +1,7 @@
 import { ReactNode, useState } from 'react';
 import ExpandMore from '@/assets/icons/expand_more.svg?react';
+import { motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 interface IAccordionProps {
   title: string;
@@ -48,7 +50,21 @@ const Accordion = ({ title, children }: IAccordionProps) => {
           <ExpandMore fill="#e88ca6" />
         </span>
       </AccordionHeaderProps>
-      {isOpen && <div className='text-sm text-justify py-2.5 px-5 bg-white'>{children}</div>}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, paddingBlock: '0px' }}
+            animate={{ height: 'auto', paddingBlock: '10px' }}
+            exit={{ height: 0, paddingBlock: '0px' }}
+            transition={{ duration: 0.3 }}
+            className='text-sm text-justify px-5 bg-white'
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* {isOpen && <div className='text-sm text-justify py-2.5 px-5 bg-white h-0'>{children}</div>} */}
     </AccordionWrapper>
   );
 };

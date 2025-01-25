@@ -52,7 +52,7 @@ function App() {
         </Wrapper>
 
         {/* 변경 후 갤러리 */}
-        <Gallery />
+        <Gallery ref={galleryRef} />
         
         <Wrapper>
           <Heading1>마음 전하실 곳</Heading1>
