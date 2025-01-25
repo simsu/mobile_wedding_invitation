@@ -1,15 +1,11 @@
-import styled from '@emotion/styled';
+interface WrapperProps {
+  children: React.ReactNode;
+}
 
-const Wrapper = styled.section`
-  padding: 30px 30px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  color: #222;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  position: relative;
-`;
+const Wrapper = ({children}: WrapperProps) => (
+  <section className='p-[30px] flex flex-col items-center text-[#222] w-full maxw-full box-border relative'>
+    {children}
+  </section>
+)
 
 export default Wrapper;

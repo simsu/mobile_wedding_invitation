@@ -7,7 +7,7 @@ import { Caption, PointTitle } from '@/components/Text.tsx';
 const Location = () => {
   const { mapInfo } = data;
   return (
-    <div className='w-[90%] flex flex-col'>
+    <div className='w-[90%] flex flex-col gap-5'>
       <PointTitle>{mapInfo.address1}</PointTitle>
       <Caption textAlign={'center'}>{mapInfo.address2}</Caption>
       <Map />
