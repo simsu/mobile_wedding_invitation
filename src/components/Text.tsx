@@ -1,34 +1,37 @@
-import styled from '@emotion/styled';
+interface childrenProps {
+  children: React.ReactNode;
+}
 
-export const Heading1 = styled.p`
-  font-family: CookieRun ,NEXONLv1Light, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 1.5rem;
-  margin: 10px;
-  color: #e88ca6;
-  white-space: pre-line;
-`;
+interface CaptionProps {
+  children: React.ReactNode;
+  textAlign?: "start" | "center" | "end" | "justify" | "left" | "right";
+}
 
-export const Heading2 = styled.p`
-  font-size: 1rem;
-  margin: 10px;
-  white-space: pre-line;
-`;
+export const Heading1 = ({children}: childrenProps) => (
+  <p className='font-[CookieRun] text-2xl mb-1em text-[#e88ca6] whitespace-pre-line'>
+    {children}
+  </p>
+)
+export const Heading2 = ({children}: childrenProps) => (
+  <p className='font-[NanumRound] text-base m-[10px] whitespace-pre-line'>
+    {children}
+  </p>
+)
 
-export const PointTitle = styled.p`
-  font-family: CookieRun ,NEXONLv1Light, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1;
-  margin: 0;
-  color: #e88ca6;
-  white-space: pre-line;
-`;
+export const PointTitle = ({children}: childrenProps) => (
+  <p className='font-[CookieRun] leading-none m-0 text-[#e88ca6] whitespace-pre-line'>
+    {children}
+  </p>
+)
 
-export const Paragraph = styled.p`
-  line-height: 2.2rem;
-  white-space: pre-line;
-`;
+export const Paragraph = ({children}: childrenProps) => (
+  <p className='leading-[2.2rem] whitespace-pre-line'>
+    {children}
+  </p>
+)
 
-export const Caption = styled.p<{ textAlign?: string }>`
-  font-weight: 200;
-  text-align: ${(props) => (props.textAlign ? props.textAlign : 'start')};
-  white-space: pre-line;
-`;
+export const Caption = ({children, textAlign}: CaptionProps) => (
+  <p className='whitespace-pre-line font-extralight' style={{'textAlign': textAlign || 'start'}}>
+    {children}
+  </p>
+)

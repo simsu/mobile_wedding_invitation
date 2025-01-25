@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import data from 'data.json';
 import { BrideAndGroom } from '@/types/data.ts';
 
@@ -7,10 +6,10 @@ const Host = () => {
   const { groom, bride } = data.greeting.host;
   return (
     <>
-      <HostContainer>
+      <div className='gap-2 font-[CookieRun]'>
         <HostInfo person={groom} />
         <HostInfo person={bride} />
-      </HostContainer>
+      </div>
     </>
   );
 };
@@ -19,7 +18,7 @@ export default Host;
 
 const HostInfo = ({ person }: { person: BrideAndGroom }) => {
   return (
-    <HostDetails>
+    <div className='py-0 px-[55px] justify-center whitespace-nowrap flex gap-[6px] align-center items-center font-bold'>
       {person.parents && (
         <>
           {person.parents.map((parent, index) => (
@@ -30,46 +29,11 @@ const HostInfo = ({ person }: { person: BrideAndGroom }) => {
           ))}
         </>
       )}
-      <RelationText>
+      <div className='not-italic leading-[26px] w-[50px] flex gap-[6px]'>
         <div>의</div>
-        <Relation>{person.relation}</Relation>
-      </RelationText>
-      <HighlightedName>{person.name}</HighlightedName>
-    </HostDetails>
+        <div className='w-[inherit]'>{person.relation}</div>
+      </div>
+      <span className='font-semibold text-[1.1rem] text-[#4f4f4f] mr-[5px]'>{person.name}</span>
+    </div>
   );
 };
-
-const HighlightedName = styled.span`
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #4f4f4f;
-  margin-right: 5px;
-`;
-
-const HostContainer = styled.div`
-  gap: 8px;
-  font-family: CookieRun ,NEXONLv1Light, SUITE-Regular, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-`;
-
-const HostDetails = styled.div`
-  padding: 0 55px;
-  justify-content: center;
-  white-space: nowrap;
-  display: flex;
-  gap: 6px;
-  text-align: center;
-  align-items: center;
-  font-weight: 700;
-`;
-
-const RelationText = styled.div`
-  font-style: normal;
-  line-height: 26px;
-  width: 50px;
-  display: flex;
-  gap: 6px;
-`;
-
-const Relation = styled.div`
-  width: inherit;
-`;

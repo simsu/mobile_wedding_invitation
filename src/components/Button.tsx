@@ -1,20 +1,14 @@
-import styled from '@emotion/styled';
+interface ButtonProps {
+  children: React.ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+}
 
-const Button = styled.button`
-  //font-family: CookieRun ,NEXONLv1Light, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  padding: 0.5em 0.8em;
-  border-radius: 8px;
-  border: 1px solid #dfdfdf;
-  outline: none;
-  box-shadow: none;
-  font-size: 0.9rem;
-  cursor: pointer;
-  background: white;
-  display: flex;
-  align-items: center;
-  color: #1a1a1a;
-  text-decoration: none;
-  gap: 2px;
-`.withComponent('a');
+const Button = ({children, onClick}: ButtonProps) => (
+  <a 
+    onClick={onClick}
+    className='font-[CookieRun] py-[0.5em] px-[0.8em] rounded-lg border border-[#dfdfdf] outline-0 shadow-none text-[0.9rem] cursor-pointer bg-white flex items-center text-[#1a1a1a] no-underline gap-0.5'>
+    {children}
+  </a>
+)
 
 export default Button;

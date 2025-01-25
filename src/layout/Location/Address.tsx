@@ -9,7 +9,7 @@ const Address = () => {
       {locationInfo?.map((item: ILocationInfo) => {
         const { title, desc } = item;
         return (
-          <div key={title} className='flex flex-col text-left'>
+          <div key={title} className='flex flex-col text-left gap-2'>
             <PointTitle>{title}</PointTitle>
             <Caption>{desc}</Caption>
           </div>

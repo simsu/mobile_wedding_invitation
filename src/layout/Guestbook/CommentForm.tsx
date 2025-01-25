@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import styled from '@emotion/styled';
 import { push, ref, serverTimestamp } from 'firebase/database';
 import { realtimeDb } from '../../firebase.ts';
 
@@ -31,69 +30,26 @@ const CommentForm = () => {
   };
 
   return (
-    <FormWrapper onSubmit={handleSubmit}>
-      <NameInput
+    <form className='flex flex-col gap-0.5 overflow-visible items-center' onSubmit={handleSubmit}>
+      <input
+        className='w-full box-border rounded-sm p-1 text-base leading-none outline-0 border border-[#ccc] font-light'
         placeholder="이름"
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <MessageInput
+      <textarea
+        className='w-full h-full box-border rounded-sm p-1 text-base leading-[1.5] outline-0 border border-[#ccc] resize-none font-light'
         placeholder="메시지"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
-      <SubmitButton type="submit">등록</SubmitButton>
-    </FormWrapper>
+      <button
+        className='w-full px-[6px] py-3 rounded-sm text-base leading-[1.5] border border-[lightgray] bg-white'
+        type="submit"
+      >등록</button>
+    </form>
   );
 };
 
-const FormWrapper = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  overflow: visible;
-  align-items: center;
-`;
-
-const NameInput = styled.input`
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 4px;
-  padding: 4px;
-  font-size: 1rem;
-  line-height: 1;
-  outline: none;
-  border: 1px solid #ccc;
-  font-family: inherit;
-  font-weight: 300;
-`;
-
-const MessageInput = styled.textarea`
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  border-radius: 4px;
-  padding: 4px;
-  font-size: 1rem;
-  line-height: 1.5;
-  outline: none;
-  border: 1px solid #ccc;
-  resize: none;
-  font-family: inherit;
-  font-weight: 300;
-`;
-
-const SubmitButton = styled.button`
-  width: 100%;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 1rem;
-  line-height: 1.5;
-  border: 1px solid lightgray;
-  background-color: white;
-  font-family: inherit;
-  font-weight: inherit;
-  color: inherit;
-`;
 export default CommentForm;

@@ -13,7 +13,7 @@
 interface ContainerProps {
   children: React.ReactNode;
 }
-function Container({children}: ContainerProps) {
+function Container({children}: ContainerProps){
   return (
     <div className='border-[30px] border-transparent bg-white mx-auto touch-action-none sm:w-[500px]'>
       {children}
