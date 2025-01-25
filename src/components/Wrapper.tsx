@@ -1,11 +1,36 @@
+import { useEffect, useRef, useState } from 'react';
+
 interface WrapperProps {
   children: React.ReactNode;
 }
 
-const Wrapper = ({children}: WrapperProps) => (
-  <section className='p-[30px] flex flex-col items-center text-[#222] w-full max-w-full box-border relative'>
-    {children}
-  </section>
-)
+const Wrapper = ({children}: WrapperProps) => {
+  const ref = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    rootMargin: '-40px',
+  });
+
+  useEffect(() => {
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+  }, []);
+
+  return (
+    <section ref={ref} className={`p-[30px] flex flex-col items-center text-[#222] w-full max-w-full box-border relative duration-1000 ${
+      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+    }`}>
+      {children}
+    </section>
+  );
+}
 
 export default Wrapper;

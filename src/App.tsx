@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { NavermapsProvider } from 'react-naver-maps';
 import { Heading1 } from '@/components/Text.tsx';
 import Wrapper from '@/components/Wrapper.tsx';
@@ -15,29 +15,7 @@ import Gallery from './layout/Gallery';
 function App() {
   const ncpClientId = import.meta.env.VITE_APP_NAVERMAPS_CLIENT_ID;
   const [isVisible, setIsVisible] = useState(false);
-  const galleryRef = useRef(null);
-
-  useEffect(() => {
-    window.addEventListener('scroll', checkScrollPosition);
-    return () => {
-      window.removeEventListener('scroll', checkScrollPosition);
-    };
-  }, []);
-
-  const checkScrollPosition = () => {
-    if (galleryRef.current) {
-      const { offsetTop } = galleryRef.current;
-      const scrollPosition = window.scrollY;
-
-      if (scrollPosition >= offsetTop) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    }
-  };
-
-  
+  const handleVisible = () => setIsVisible(true);
 
   return (
     <NavermapsProvider ncpClientId={ncpClientId}>
@@ -50,10 +28,7 @@ function App() {
           <Heading1>모시는 글</Heading1>
           <Invitation />
         </Wrapper>
-
-        {/* 변경 후 갤러리 */}
-        <Gallery ref={galleryRef} />
-        
+        <Gallery onVisible={handleVisible} />
         <Wrapper>
           <Heading1>마음 전하실 곳</Heading1>
           <Account />

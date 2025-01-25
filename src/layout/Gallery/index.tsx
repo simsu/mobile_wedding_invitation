@@ -1,11 +1,12 @@
-import { useRef, useState, CSSProperties, useEffect, forwardRef } from 'react';
+import { useRef, useState, CSSProperties, useEffect } from 'react';
 
 // 이미지 배열
 const _images = Array.from({ length: 21 }).fill(0).map((_, index) => `/img/${(index + 2).toString().padStart(2, '0')}.webp`);
 // 이미지 배열 앞 뒤로 trick 사진 추가. 1개씩만 했기 때문에 0.5초 이내에 광클하면 앞으로 돌아가는 효과가 나옴...
 const images = [_images[_images.length - 1], ..._images, _images[0]];
 
-export default forwardRef<HTMLDivElement>(function Gallery(_, ref) {
+export default function Gallery({ onVisible }: { onVisible: () => void }) {
+  const ref = useRef<HTMLDivElement>(null);
   // 터치 슬라이드 전용 ref
   const wrapper = useRef<HTMLDivElement>(null);
   // 슬라이드 스타일
@@ -17,6 +18,26 @@ export default forwardRef<HTMLDivElement>(function Gallery(_, ref) {
   const [currentIndex, setCurrentIndex] = useState(1);
   // 터치 시작 위치
   const [touchStart, setTouchStart] = useState(0);
+
+  // 갤러리 노출 여부
+  const [isVisible, setIsVisible] = useState(false);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        onVisible();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    rootMargin: '-40px',
+  });
+
+  useEffect(() => {
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+  }, []);
 
   const next = () => {
     setCurrentIndex(currentIndex + 1);
@@ -39,8 +60,8 @@ export default forwardRef<HTMLDivElement>(function Gallery(_, ref) {
   };
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    // 슬라이드 이동 기준 (100px)
-    const criteria = 100;
+    // 슬라이드 이동 기준 (60px)
+    const criteria = 60;
     const touchEnd = e.changedTouches[0].pageX;
     if (touchEnd - touchStart > criteria) {
       prev();
@@ -87,7 +108,9 @@ export default forwardRef<HTMLDivElement>(function Gallery(_, ref) {
   }, [currentIndex]);
 
   return (
-    <div ref={ref} className="pt-7 -mx-[30px] md:mx-5">
+    <section ref={ref} className={`pt-7 -mx-[30px] md:mx-5 duration-1000 ${
+      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+    }`}>
       <p className="text-2xl text-[#e88ca6] font-[CookieRun]">Gallery</p>
       <div className="mt-[46px] relative">
         <div
@@ -104,6 +127,6 @@ export default forwardRef<HTMLDivElement>(function Gallery(_, ref) {
         <button onClick={prev} className="absolute left-0 top-1/2 -translate-y-1/2 text-4xl text-white p-2.5 bg-pink-100/50 hover:bg-pink-200/50 cursor-pointer">❮</button>
         <button onClick={next} className="absolute right-0 top-1/2 -translate-y-1/2 text-4xl text-white p-2.5 bg-pink-100/50 hover:bg-pink-200/50 cursor-pointer">❯</button>
       </div>
-    </div>
+    </section>
   );
-});
+};
