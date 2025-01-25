@@ -99,7 +99,7 @@ const Controls = ({children}: divProps) => (
 
 const Button = ({children}:ButtonProps) => (
   <button className='bg-[rgba(0,0,0,0.5)] text-white border-0 p-[10px] cursor-pointer text-lg hover:bg-[rgba(0,0,0,0.8)]'>
-    
+    {children}
   </button>
 )
 
