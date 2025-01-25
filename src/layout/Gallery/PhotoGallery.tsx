@@ -2,6 +2,10 @@ import images from '@/layout/Gallery/Images.ts';
 import styled from '@emotion/styled';
 import { useEffect, useRef, useState } from 'react';
 
+interface divProps extends React.HTMLProps<HTMLDivElement> {
+  children: React.ReactNode;
+}
+
 const PhotoGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [startX, setStartX] = useState(0);
@@ -76,15 +80,11 @@ const PhotoGallery = () => {
   );
 };
 
-const SliderContainer = styled.div`
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  margin: 0 auto;
-  touch-action: pan-y; // 수직 스크롤과 충돌 방지
-  box-sizing: border-box;
-  aspect-ratio: 2 / 3; // 가로:세로 비율 2:3
-`;
+const SliderContainer = ({children}: divProps) => (
+  <div className='relative w-full overflow-hidden my-0 mx-auto touch-pan-y box-border aspect-[2/3]'>
+    {children}
+  </div>
+)
 
 const SlideWrapper = styled.div<{ currentIndex: number }>`
   display: flex;
@@ -104,14 +104,11 @@ const Slide = styled.div`
   box-sizing: border-box;
 `;
 
-const Controls = styled.div`
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-`;
+
+const Controls = ({children}: divProps) => (
+  <div className='absolute top-[50%] w-full flex justify-between transform-[translateY(-50%)]'>{children}</div>
+)
+
 
 const Button = styled.button`
   background: rgba(0, 0, 0, 0.5);

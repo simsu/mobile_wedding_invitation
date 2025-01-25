@@ -1,15 +1,13 @@
-import styled from '@emotion/styled';
+import React from "react";
 
-const RoundButton = styled.button`
-  padding: 0.5em 1em;
-  border-radius: 20px;
-  outline: none;
-  box-shadow: none;
-  font-size: 0.9rem;
-  cursor: pointer;
-  color: #44484d;
-  text-decoration: none;
-  background-color: #e6ece1;
-`.withComponent('a');
+interface RoundButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  children: React.ReactNode;
+}
+
+const RoundButton = ({children, ...props}: RoundButtonProps) => (
+  <a {...props}
+    className='py-[0.5em] px-[1em] rounded-[20px] outline-0 shadow-none text-[0.9rem] cursor-pointer text-[#44484d] no-underline bg-[#e6ece1]'
+  >{children}</a>
+)
 
 export default RoundButton;

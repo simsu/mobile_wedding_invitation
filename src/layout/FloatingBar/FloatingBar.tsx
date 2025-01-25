@@ -61,7 +61,7 @@ const FloatingBar = ({ isVisible }: { isVisible: boolean }) => {
 
   return (
     <nav
-      className='minw-[280px] fixed bottom-[30px] left-0 right-0 items-center justify-center gap-[5px]'
+      className='min-w-[280px] fixed bottom-[30px] left-0 right-0 items-center justify-center gap-[5px]'
       style={{'display': isVisible ? 'flex': 'none'}}
     >
       <Button onClick={handleCount}>
