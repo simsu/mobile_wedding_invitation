@@ -32,7 +32,7 @@ export default function Gallery({ onVisible }: { onVisible: () => void }) {
       }
     });
   }, {
-    threshold: 0.1,
+    threshold: 0.025,
   });
 
   useEffect(() => {
