@@ -15,7 +15,7 @@ const Wrapper = ({children}: WrapperProps) => {
       }
     });
   }, {
-    rootMargin: '-40px',
+    threshold: 0.2,
   });
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Wrapper = ({children}: WrapperProps) => {
   }, []);
 
   return (
-    <section ref={ref} className={`p-[30px] flex flex-col items-center text-[#222] w-full max-w-full box-border relative duration-1000 ${
+    <section ref={ref} className={`p-[30px] flex flex-col items-center text-[#222] w-full max-w-full box-border relative duration-500 ${
       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
     }`}>
       {children}

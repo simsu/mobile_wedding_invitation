@@ -16,8 +16,10 @@ export default function Gallery({ onVisible }: { onVisible: () => void }) {
   });
   // 현재 슬라이드 인덱스
   const [currentIndex, setCurrentIndex] = useState(1);
-  // 터치 시작 위치
-  const [touchStart, setTouchStart] = useState(0);
+  
+  const startX = useRef(0);
+  const startY = useRef(0);
+  const isScrolling = useRef(false);
 
   // 갤러리 노출 여부
   const [isVisible, setIsVisible] = useState(false);
@@ -30,7 +32,7 @@ export default function Gallery({ onVisible }: { onVisible: () => void }) {
       }
     });
   }, {
-    rootMargin: '-40px',
+    threshold: 0.1,
   });
 
   useEffect(() => {
@@ -56,33 +58,41 @@ export default function Gallery({ onVisible }: { onVisible: () => void }) {
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    setTouchStart(e.touches[0].pageX);
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    // 슬라이드 이동 기준 (60px)
-    const criteria = 60;
-    const touchEnd = e.changedTouches[0].pageX;
-    if (touchEnd - touchStart > criteria) {
-      prev();
-    } else if (touchEnd - touchStart < -criteria) {
-      next();
-    } else {
-      setStyle({
-        transform: `translateX(-${currentIndex * 100}%)`,
-        transition: 'transform 0.5s ease-in-out',
-      });
-    }
+    startX.current = e.touches[0].clientX;
+    startY.current = e.touches[0].clientY;
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (wrapper.current) {
+      const diffX = e.targetTouches[0].clientX - startX.current;
+      const diffY = e.targetTouches[0].clientY - startY.current;
+
+      isScrolling.current = Math.abs(diffY) > Math.abs(diffX);
+      if (isScrolling.current) return;
+
       const currentX = wrapper.current.clientWidth * -currentIndex;
-      const result = currentX + (e.targetTouches[0].pageX - touchStart);
+      const result = currentX + diffX;
       setStyle({
         transform: `translateX(${result}px)`,
         transition: 'none',
       });
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (wrapper.current) {
+      const diffX = e.changedTouches[0].clientX - startX.current;
+      const criteria = 60;
+      if (diffX > criteria) {
+        prev();
+      } else if (diffX < -criteria) {
+        next();
+      } else {
+        setStyle({
+          transform: `translateX(-${currentIndex * 100}%)`,
+          transition: 'transform 0.5s ease-in-out',
+        });
+      }
     }
   };
 
@@ -108,7 +118,7 @@ export default function Gallery({ onVisible }: { onVisible: () => void }) {
   }, [currentIndex]);
 
   return (
-    <section ref={ref} className={`pt-7 -mx-[30px] md:mx-5 duration-1000 ${
+    <section ref={ref} className={`pt-7 -mx-[30px] md:mx-5 duration-500 ${
       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
     }`}>
       <p className="text-2xl text-[#e88ca6] font-[CookieRun]">Gallery</p>
@@ -117,7 +127,7 @@ export default function Gallery({ onVisible }: { onVisible: () => void }) {
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onTouchMove={handleTouchMove}
-          className="overflow-hidden w-full touch-pan-auto">
+          className="overflow-hidden w-full">
           <div ref={wrapper} style={style} className="flex">
             {images.map((image, index) => (
               <img key={index} src={image} alt={`image ${index + 1}`} className="w-full h-full object-cover" />
