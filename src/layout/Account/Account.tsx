@@ -5,7 +5,7 @@ import Accordion from '@/components/Accordion.tsx';
 const Account = () => {
   const { hostInfo } = data;
   return (
-    <div className='flex w-[90%] flex-col py-5'>
+    <div className='flex w-full flex-col py-5'>
       {hostInfo.map((host) => {
         return (
           <Accordion title={host.host} key={host.host}>
