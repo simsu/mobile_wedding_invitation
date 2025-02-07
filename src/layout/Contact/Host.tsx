@@ -31,9 +31,12 @@ const HostInfo = ({ person }: { person: BrideAndGroom }) => {
       )}
       <div className='not-italic leading-[26px] w-[50px] flex gap-[6px]'>
         <div>의</div>
-        <div className='w-[inherit]'>{person.relation}</div>
+        {
+          person.relation == '아들' ? <div className='w-[inherit] font-[NanumRoundB] text-blue-300'>{person.relation}</div> 
+          : <div className='w-[inherit] font-[NanumRoundB] text-rose-300'>{person.relation}</div>
+        }
       </div>
-      <span className='font-semibold text-[1.1rem] text-[#4f4f4f] mr-[5px]'>{person.name}</span>
+      <span className='font-semibold text-[1.1rem] text-[#4f4f4f] mr-[5px] font-[NanumRoundB]'>{person.name}</span>
     </div>
   );
 };

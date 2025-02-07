@@ -1,6 +1,6 @@
 {
   "greeting": {
-    "title": "심수연 & 남현철 \n결혼합니다!",
+    "title": "저희 결혼합니다",
     "message": "저희 결혼합니다.\n두 사람이 함께 맞는 여섯 번째 봄,\n부부로서 첫걸음을 내딛는\n그 설렘의 순간에 소중한 분들을 초대합니다.\n저희 두 사람이 사랑이 더 커갈 수 있도록 \n앞날을 축복해 주시면 감사하겠습니다.",
     "host": {
       "groom": {
@@ -88,7 +88,8 @@
   ],
   "mapInfo": {
     "address1": "아르델웨딩컨벤션",
-    "address2": "충남 서산시 음암면 서해로 3839\n041-669-5500",
+    "address2": "충남 서산시 음암면 서해로 3839",
+    "address3": "041-669-5500",
     "naverMap": "https://naver.me/FcmWyAjd",
     "kakaoMap": "https://kko.kakao.com/QGACB4fFl1",
     "lat": 36.7832485,

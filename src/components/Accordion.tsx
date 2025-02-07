@@ -18,7 +18,7 @@ interface AccordionHeaderProps {
 }
 
 const AccordionWrapper: React.FC<AccordionWrapperProps> = ({ children }: AccordionWrapperProps) => (
-  <div className='font-[NEXONLv1Bold] border border-[#e6ece1] mb-5 rounded-lg overflow-hidden transition-all duration-30'>
+  <div className='font-[NEXONLv1Bold] border border-[#568a35]/20 mb-5 rounded-lg overflow-hidden transition-all duration-30'>
     { children }
   </div>
 )
@@ -26,7 +26,7 @@ const AccordionWrapper: React.FC<AccordionWrapperProps> = ({ children }: Accordi
 const AccordionHeaderProps = ({children, onClick}: AccordionHeaderProps) => (
   <div
     onClick={onClick}
-    className='flex items-center justify-between bg-[#e6ece1] px-[15px] pointer'
+    className='flex items-center justify-between bg-[#568a35]/20 px-[15px] pointer'
   >
     {children}
   </div>
@@ -42,12 +42,12 @@ const Accordion = ({ title, children }: IAccordionProps) => {
   return (
     <AccordionWrapper>
       <AccordionHeaderProps onClick={toggleAccordion}>
-        <p className='text-[#44484d] my-4'>{title}</p>
+        <p className='text-stone-800 my-4'>{title}</p>
         <span
           className='flex items-center justify-center select-none transition-all duration-30'
           style={{ 'transform': isOpen ? 'rotate(180deg)' : undefined }}
         >
-          <ExpandMore fill="#e88ca6" />
+          <ExpandMore fill="#568a35" />
         </span>
       </AccordionHeaderProps>
       <AnimatePresence>
@@ -64,29 +64,8 @@ const Accordion = ({ title, children }: IAccordionProps) => {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* {isOpen && <div className='text-sm text-justify py-2.5 px-5 bg-white h-0'>{children}</div>} */}
     </AccordionWrapper>
   );
 };
 
 export default Accordion;
-
-// const AccordionHeader = styled.div<{ isActive: boolean }>`
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   background-color: #e6ece1;
-//   padding: 0 15px;
-//   cursor: pointer;
-//   & > p {
-//     color: #44484d;
-//   }
-//   & > span {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     user-select: none;
-//     transition: all 0.3s ease;
-//     transform: ${(props) => (props.isActive ? 'rotate(180deg)' : undefined)};
-//   }
-// `;

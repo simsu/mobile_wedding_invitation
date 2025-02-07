@@ -20,7 +20,7 @@ function App() {
   return (
     <NavermapsProvider ncpClientId={ncpClientId}>
       <Container>
-        <Wrapper>
+        <Wrapper className='min-h-screen'>
           <AudioButton></AudioButton>
           <Main />
         </Wrapper>

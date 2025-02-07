@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 
 interface WrapperProps {
   children: React.ReactNode;
+  className?: string;
 }
 
-const Wrapper = ({children}: WrapperProps) => {
+const Wrapper = ({children, className = ''}: WrapperProps) => {
   const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const observer = new IntersectionObserver((entries) => {
@@ -27,7 +28,7 @@ const Wrapper = ({children}: WrapperProps) => {
   return (
     <section ref={ref} className={`p-[30px] flex flex-col items-center text-[#222] w-full max-w-full box-border relative duration-500 ${
       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-    }`}>
+    } ${className}`}>
       {children}
     </section>
   );

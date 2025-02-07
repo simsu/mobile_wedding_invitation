@@ -22,7 +22,7 @@ const Invitation = () => {
   return (
     <InvitationWrapper>
       <Paragraph>{greeting.message}</Paragraph>
-      <div style={{'background': `url(${Flower}) 0% 0% / cover no-repeat`}} className='my-0 mx-auto mb-4 w-5 h-10'></div>
+      <div style={{'background': `url(${Flower}) 0% 0% / cover no-repeat`}} className='my-4 mx-auto w-5 h-10'></div>
       <Host />
       <Caption textAlign={'center'}>{greeting.eventDetail}</Caption>
       {/* TODO: 구글캘린더 추가하기 기능을 넣는다면 링크 수정 */}
@@ -53,7 +53,7 @@ const InvitationWrapper = ({children}: ChildrenProps) => (
 )
 
 const ContactWrapper = ({children}: ChildrenProps) => (
-  <div className='flex gap-5 items-center'>
+  <div className='flex gap-5 items-center mt-2'>
     {children}
   </div>
 )

@@ -121,7 +121,7 @@ export default function Gallery({ onVisible }: { onVisible: () => void }) {
     <section ref={ref} className={`pt-7 -mx-[30px] md:mx-5 duration-500 ${
       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
     }`}>
-      <p className="text-2xl text-[#e88ca6] font-[NEXONLv1Bold]">Gallery</p>
+      <p className="text-3xl text-[#ffc531]/80 font-[NanumRoundEB]">Gallery</p>
       <div className="mt-[46px] relative">
         <div
           onTouchStart={handleTouchStart}

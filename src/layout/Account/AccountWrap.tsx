@@ -28,7 +28,7 @@ const AccountWrap = ({
   return (
     <div className='font-[NEXONLv1Light] flex flex-col py-2.5 border-b border-[#dfdfdf] last-of-type:mb-0 last-of-type:border-b-0'>
       <div className='grid grid-cols-[46px_1fr] items-center gap-0.5 my-[5px]'>
-        <span className='text-[#44484d]'>{relation}</span>
+        <span className='text-stone-800'>{relation}</span>
         <span className='text-base'>{name}</span>
       </div>
       <div className='flex items-center justify-between'>

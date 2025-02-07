@@ -8,18 +8,18 @@ interface CaptionProps {
 }
 
 export const Heading1 = ({children}: childrenProps) => (
-  <p className='font-[NanumRoundB] text-2xl mb-1em mt-1em text-[#e88ca6] whitespace-pre-line'>
+  <p className='font-[NanumRoundEB] text-3xl mb-1em text-[#568a35]/80 whitespace-pre-line'>
     {children}
   </p>
 )
 export const Heading2 = ({children}: childrenProps) => (
-  <p className='font-[NanumRoundB] text-base m-[10px] whitespace-pre-line'>
+  <p className='font-[NanumRound] text-stone-600 text-base m-[10px] whitespace-pre-line'>
     {children}
   </p>
 )
 
 export const PointTitle = ({children}: childrenProps) => (
-  <p className='font-[NanumRoundB] leading-none m-0 text-[#e88ca6] whitespace-pre-line'>
+  <p className='font-[NanumRoundB] leading-none m-0 text-xl text-stone-700 whitespace-pre-line'>
     {children}
   </p>
 )
@@ -31,7 +31,7 @@ export const Paragraph = ({children}: childrenProps) => (
 )
 
 export const Caption = ({children, textAlign}: CaptionProps) => (
-  <p className='whitespace-pre-line font-extralight' style={{'textAlign': textAlign || 'start'}}>
+  <p className='whitespace-pre-line font-extralight text-stone-500' style={{'textAlign': textAlign || 'start'}}>
     {children}
   </p>
 )

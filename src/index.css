@@ -36,6 +36,11 @@ body {
 }
 
 @font-face {
+  font-family: 'NanumRoundEB';
+  src: url('/NanumSquareRoundEB.woff2') format('truetype');
+}
+
+@font-face {
   font-family: 'NEXONLv1Light';
   src: url('/NEXON Lv1 Gothic Low OTF Light.woff2') format('truetype');
 }
@@ -44,6 +49,7 @@ body {
   font-family: 'NEXONLv1Bold';
   src: url('/NEXON Lv1 Gothic Low OTF Bold.woff2') format('truetype');
 }
+
 
 @theme {
   --spacing-1em: 1em;
