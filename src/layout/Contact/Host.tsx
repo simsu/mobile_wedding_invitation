@@ -6,7 +6,7 @@ const Host = () => {
   const { groom, bride } = data.greeting.host;
   return (
     <>
-      <div className='gap-2 font-[CookieRun]'>
+      <div className='gap-2 font-[NanumMyeongjoBold]'>
         <HostInfo person={groom} />
         <HostInfo person={bride} />
       </div>
@@ -18,13 +18,13 @@ export default Host;
 
 const HostInfo = ({ person }: { person: BrideAndGroom }) => {
   return (
-    <div className='py-0 px-[55px] justify-center whitespace-nowrap flex gap-[6px] align-center items-center font-bold'>
+    <div className='font-[NanumRound] py-0 px-[55px] justify-center whitespace-nowrap flex gap-[6px] align-center items-center font-bold'>
       {person.parents && (
         <>
           {person.parents.map((parent, index) => (
-            <React.Fragment key={index}>
+            <React.Fragment key={index} >
               {index > 0 && ' · '}
-              {parent.name}
+              <span className='font-[NanumRoundB]'>{parent.name}</span>
             </React.Fragment>
           ))}
         </>

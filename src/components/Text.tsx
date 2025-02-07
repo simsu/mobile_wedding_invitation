@@ -8,18 +8,18 @@ interface CaptionProps {
 }
 
 export const Heading1 = ({children}: childrenProps) => (
-  <p className='font-[CookieRun] text-2xl mb-1em text-[#e88ca6] whitespace-pre-line'>
+  <p className='font-[NanumRoundB] text-2xl mb-1em mt-1em text-[#e88ca6] whitespace-pre-line'>
     {children}
   </p>
 )
 export const Heading2 = ({children}: childrenProps) => (
-  <p className='font-[NanumRound] text-base m-[10px] whitespace-pre-line'>
+  <p className='font-[NanumRoundB] text-base m-[10px] whitespace-pre-line'>
     {children}
   </p>
 )
 
 export const PointTitle = ({children}: childrenProps) => (
-  <p className='font-[CookieRun] leading-none m-0 text-[#e88ca6] whitespace-pre-line'>
+  <p className='font-[NanumRoundB] leading-none m-0 text-[#e88ca6] whitespace-pre-line'>
     {children}
   </p>
 )

@@ -18,7 +18,7 @@ interface AccordionHeaderProps {
 }
 
 const AccordionWrapper: React.FC<AccordionWrapperProps> = ({ children }: AccordionWrapperProps) => (
-  <div className='font-[CookieRun] border border-[#e6ece1] mb-5 rounded-lg overflow-hidden transition-all duration-30'>
+  <div className='font-[NEXONLv1Bold] border border-[#e6ece1] mb-5 rounded-lg overflow-hidden transition-all duration-30'>
     { children }
   </div>
 )

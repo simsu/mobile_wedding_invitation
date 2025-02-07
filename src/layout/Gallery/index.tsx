@@ -121,7 +121,7 @@ export default function Gallery({ onVisible }: { onVisible: () => void }) {
     <section ref={ref} className={`pt-7 -mx-[30px] md:mx-5 duration-500 ${
       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
     }`}>
-      <p className="text-2xl text-[#e88ca6] font-[CookieRun]">Gallery</p>
+      <p className="text-2xl text-[#e88ca6] font-[NEXONLv1Bold]">Gallery</p>
       <div className="mt-[46px] relative">
         <div
           onTouchStart={handleTouchStart}
@@ -134,8 +134,8 @@ export default function Gallery({ onVisible }: { onVisible: () => void }) {
             ))}
           </div>
         </div>
-        <button onClick={prev} className="absolute left-0 top-1/2 -translate-y-1/2 text-4xl text-white p-2.5 bg-pink-100/50 hover:bg-pink-200/50 cursor-pointer">❮</button>
-        <button onClick={next} className="absolute right-0 top-1/2 -translate-y-1/2 text-4xl text-white p-2.5 bg-pink-100/50 hover:bg-pink-200/50 cursor-pointer">❯</button>
+        <button onClick={prev} className="absolute left-0 top-1/2 -translate-y-1/2 text-4xl text-white p-2.5 bg-black/20 hover:bg-black/50 cursor-pointer">❮</button>
+        <button onClick={next} className="absolute right-0 top-1/2 -translate-y-1/2 text-4xl text-white p-2.5 bg-black/20 hover:bg-black/50 cursor-pointer">❯</button>
       </div>
     </section>
   );
