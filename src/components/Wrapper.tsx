@@ -3,10 +3,12 @@ import { useEffect, useRef, useState } from 'react';
 interface WrapperProps {
   children: React.ReactNode;
   className?: string;
+  onScroll?: (below: boolean) => void;
 }
 
-const Wrapper = ({children, className = ''}: WrapperProps) => {
+const Wrapper = ({children, className = '', onScroll}: WrapperProps) => {
   const ref = useRef<HTMLElement>(null);
+  const visibleRef = useRef(false);
   const [isVisible, setIsVisible] = useState(false);
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -22,8 +24,26 @@ const Wrapper = ({children, className = ''}: WrapperProps) => {
   useEffect(() => {
     if (ref.current) {
       observer.observe(ref.current);
+      window.addEventListener('scroll', () => {});
+      return () => window.removeEventListener('scroll', () => {});
     }
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (ref.current && onScroll) {
+        if (!visibleRef.current && ref.current.getBoundingClientRect().top < window.innerHeight) {
+          visibleRef.current = true;
+          onScroll(true);
+        } else if (visibleRef.current && ref.current.getBoundingClientRect().top > window.innerHeight) {
+          visibleRef.current = false;
+          onScroll(false);
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [onScroll]);
 
   return (
     <section ref={ref} className={`p-[30px] flex flex-col items-center text-[#222] w-full max-w-full box-border relative duration-500 ${

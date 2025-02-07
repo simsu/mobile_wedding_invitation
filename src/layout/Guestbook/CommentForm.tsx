@@ -10,10 +10,10 @@ const CommentForm = () => {
   const [message, setMessage] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (!name || !message) {
       alert('이름과 메시지를 채워주세요. 🥹');
     } else {
-      e.preventDefault();
       // TODO: 이름, 메시지, 생성시간, 작성날짜 저장.
       const guestbookMessage = {
         sender: name,

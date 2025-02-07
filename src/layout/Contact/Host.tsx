@@ -36,7 +36,7 @@ const HostInfo = ({ person }: { person: BrideAndGroom }) => {
           : <div className='w-[inherit] font-[NanumRoundB] text-rose-300'>{person.relation}</div>
         }
       </div>
-      <span className='font-semibold text-[1.1rem] text-[#4f4f4f] mr-[5px] font-[NanumRoundB]'>{person.name}</span>
+      <span className='font-semibold text-[1.1rem] text-stone-700 mr-[5px] font-[NanumRoundB]'>{person.name}</span>
     </div>
   );
 };

@@ -5,7 +5,7 @@ const _images = Array.from({ length: 21 }).fill(0).map((_, index) => `/img/${(in
 // 이미지 배열 앞 뒤로 trick 사진 추가. 1개씩만 했기 때문에 0.5초 이내에 광클하면 앞으로 돌아가는 효과가 나옴...
 const images = [_images[_images.length - 1], ..._images, _images[0]];
 
-export default function Gallery({ onVisible }: { onVisible: () => void }) {
+export default function Gallery() {
   const ref = useRef<HTMLDivElement>(null);
   // 터치 슬라이드 전용 ref
   const wrapper = useRef<HTMLDivElement>(null);
@@ -27,7 +27,6 @@ export default function Gallery({ onVisible }: { onVisible: () => void }) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         setIsVisible(true);
-        onVisible();
         observer.unobserve(entry.target);
       }
     });

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NavermapsProvider } from 'react-naver-maps';
 import { Heading1 } from '@/components/Text.tsx';
 import Wrapper from '@/components/Wrapper.tsx';
@@ -15,12 +15,12 @@ import Gallery from './layout/Gallery';
 function App() {
   const ncpClientId = import.meta.env.VITE_APP_NAVERMAPS_CLIENT_ID;
   const [isVisible, setIsVisible] = useState(false);
-  const handleVisible = () => setIsVisible(true);
+
 
   return (
     <NavermapsProvider ncpClientId={ncpClientId}>
       <Container>
-        <Wrapper className='min-h-screen'>
+        <Wrapper>
           <AudioButton></AudioButton>
           <Main />
         </Wrapper>
@@ -28,12 +28,12 @@ function App() {
           <Heading1>모시는 글</Heading1>
           <Invitation />
         </Wrapper>
-        <Gallery onVisible={handleVisible} />
+        <Gallery />
         <Wrapper>
           <Heading1>마음 전하실 곳</Heading1>
           <Account />
         </Wrapper>
-        <Wrapper>
+        <Wrapper onScroll={setIsVisible}>
           <Heading1>오시는 길</Heading1>
           <Location />
         </Wrapper>
