@@ -1,5 +1,5 @@
 import data from 'data.json';
-import { Caption, PointTitle } from '@/components/Text.tsx';
+import { PointTitle } from '@/components/Text.tsx';
 import { ILocationInfo } from '@/types/data.ts';
 
 const Address = () => {
