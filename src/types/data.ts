@@ -52,5 +52,5 @@ export interface IMapInfo {
 
 export interface ILocationInfo {
   title: string;
-  desc: string;
+  desc: string[];
 }

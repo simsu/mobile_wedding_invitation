@@ -10,8 +10,15 @@ const Address = () => {
         const { title, desc } = item;
         return (
           <div key={title} className='flex flex-col text-left gap-4'>
-            <PointTitle>{title}</PointTitle>
-            <Caption>{desc}</Caption>
+            <PointTitle><span>📍&nbsp;</span>{title}</PointTitle>
+            {
+              desc.map((value, index) => (
+              <p className='flex font-extralight text-stone-500' key={index}>
+                <span>👉🏻&nbsp;</span>
+                <span className='whitespace-pre-wrap'>{value}</span>
+              </p>
+            ))
+            }
           </div>
         );
       })}
