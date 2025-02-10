@@ -84,14 +84,16 @@ export default function Gallery() {
     }`}>
       <p className="mb-1em text-3xl text-[#ffc531]/80 font-[NanumRoundEB]">Gallery</p>
       <div>
-        <div className="relative flex px-2 justify-between">
+        <div className="flex px-4">
           <button onClick={prev} className="text-3xl text-stone-600 p-2.5 cursor-pointer">❮</button>
-          <img
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            src={images[index]}
-            className="w-[320px]"/>
+          <div>
+            <img
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              src={images[index]}
+              className="" />
+          </div>
           <button onClick={next} className="text-3xl text-stone-600 p-2.5 cursor-pointer">❯</button>
         </div>
         <div className="p-4 my-1em bg-stone-800">
