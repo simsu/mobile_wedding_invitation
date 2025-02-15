@@ -6,7 +6,7 @@ const Main = () => {
   return (
     <div>
       <h1 className='font-[NanumRoundEB] text-stone-300 text-3xl leading-none mt-0 ml-0 mr-0 pb-3'>Wedding Day</h1>
-      <h3 className='font-[NanumRoundB] text-2xl mb-[1.5rem] text-stone-500'>심수연 & 남현철</h3>
+      <h3 className='font-[NanumRoundB] text-2xl mb-[1.5rem] text-stone-500'>남현철 & 심수연</h3>
       <div className='flex justify-center'>
         <img src={mainImg} className='w-[90%] max-w-[450px]' />
       </div>

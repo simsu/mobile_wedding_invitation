@@ -32,7 +32,7 @@ const HostInfo = ({ person }: { person: BrideAndGroom }) => {
       <div className='not-italic leading-[26px] w-[50px] flex gap-[6px]'>
         <div>의</div>
         {
-          person.relation == '아들' ? <div className='w-[inherit] font-[NanumRoundB] text-blue-300'>{person.relation}</div> 
+          person.relation == '장남' ? <div className='w-[inherit] font-[NanumRoundB] text-blue-300'>{person.relation}</div> 
           : <div className='w-[inherit] font-[NanumRoundB] text-rose-300'>{person.relation}</div>
         }
       </div>
