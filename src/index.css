@@ -57,5 +57,5 @@ body {
 
 body, #root {
   max-width: 100%;
-  touch-action: pan-y;
+  touch-action: manipulation;
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavermapsProvider } from 'react-naver-maps';
 import { Heading1 } from '@/components/Text.tsx';
 import Wrapper from '@/components/Wrapper.tsx';
@@ -16,6 +16,18 @@ function App() {
   const ncpClientId = import.meta.env.VITE_APP_NAVERMAPS_CLIENT_ID;
   const [isVisible, setIsVisible] = useState(false);
 
+  useEffect(() => {
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 1) e.preventDefault();
+    }
+    const handleGestureStart = (e: Event) => e.preventDefault(); 
+    document.addEventListener('touchstart', handleTouchMove, { passive: false });
+    document.addEventListener('gesturestart', handleGestureStart, { passive: false });
+    return () => {
+      document.removeEventListener('touchstart', handleTouchMove);
+      document.removeEventListener('gesturestart', handleGestureStart);
+    }
+  }, []);
 
   return (
     <NavermapsProvider ncpClientId={ncpClientId}>

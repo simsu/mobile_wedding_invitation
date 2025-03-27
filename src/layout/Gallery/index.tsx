@@ -10,9 +10,6 @@ export default function Gallery() {
   // 갤러리 노출 여부
   const [isVisible, setIsVisible] = useState(false);
   const [index, setIndex] = useState(0);
-  const startX = useRef(0);
-  const startY = useRef(0);
-  const moving = useRef('');
   const ref = useRef<SwiperRef>(null);
   
   const observer = new IntersectionObserver((entries) => {
@@ -31,30 +28,6 @@ export default function Gallery() {
       observer.observe(galleryRef.current);
     }
   }, []);
-
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    startX.current = e.touches[0].clientX;
-    startY.current = e.touches[0].clientY;
-    moving.current = '';
-  };
-
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (moving.current !== '') return;
-    const diffX = e.targetTouches[0].clientX - startX.current;
-    const diffY = e.targetTouches[0].clientY - startY.current;
-    moving.current = Math.abs(diffY) > Math.abs(diffX) ? 'y' : 'x';
-  }
-
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (moving.current === 'y') return; // y축 터치 시 스와이프 생략
-    const diffX = e.changedTouches[0].clientX - startX.current;
-    const criteria = 60;
-    if (diffX > criteria) {
-      prev();
-    } else if (diffX < -criteria) {
-      next();
-    }
-  };
 
   const next = () => {
     if (ref.current) {
@@ -82,21 +55,18 @@ export default function Gallery() {
     <section ref={galleryRef} className={`py-10 -mx-[30px] md:mx-5 duration-500 ${
       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
     }`}>
-      <p className="mb-1em text-3xl text-[#ffc531]/80 font-[NanumRoundEB]">Gallery</p>
+      <p className="mb-8 text-3xl text-[#ffc531]/80 font-[NanumRoundEB]">Gallery</p>
       <div>
         <div className="flex px-4">
           <button onClick={prev} className="text-3xl text-stone-600 p-2.5 cursor-pointer">❮</button>
           <div>
             <img
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
               src={images[index]}
-              className="" />
+            />
           </div>
           <button onClick={next} className="text-3xl text-stone-600 p-2.5 cursor-pointer">❯</button>
         </div>
-        <div className="p-4 my-1em bg-stone-800">
+        <div className="p-4 my-10 bg-stone-800">
           <Swipper ref={ref} onClick={handleClick} />
         </div>
       </div>
