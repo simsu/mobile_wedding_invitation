@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { SwiperRef } from 'swiper/react';
 import Swipper from "./swipper";
-
-const images = Array(21).fill(0).map((_, index) => `/resized_img_640x960/${(index + 2).toString().padStart(2, '0')}.webp`);
-
+import { images } from "./images";
 
 export default function Gallery() {
   const galleryRef = useRef<HTMLDivElement>(null);
