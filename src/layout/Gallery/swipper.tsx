@@ -5,8 +5,7 @@ import { Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/mousewheel';
 import { forwardRef, useState } from 'react';
-
-const images = Array(21).fill(0).map((_, index) => `/resized_img_320x480/${(index + 2).toString().padStart(2, '0')}.webp`);
+import { resizedImages as images } from './images';
 
 export default forwardRef<SwiperRef, { onClick: (idx: number) => void }>(({ onClick }, ref) => {
   const [currentIndex, setCurrentIndex] = useState(0);
