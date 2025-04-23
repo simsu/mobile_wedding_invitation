@@ -1,0 +1,83 @@
+on:
+  push:
+    branches:
+    - main
+env:
+  REGISTRY_NAME: zeroumacr
+  CLUSTER_NAME: zeroum
+  CLUSTER_RESOURCE_GROUP: ZEROUM
+  NAMESPACE: mobile-wedding
+  APP_NAME: mobile-wedding
+  SECRET: registry
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      
+      - name: Login
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.REGISTRY_NAME }}.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      
+      - name: Kubectl
+        uses: azure/setup-kubectl@v3
+      
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: AKS context
+        uses: azure/aks-set-context@v3
+        with:
+          resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+          cluster-name: ${{ env.CLUSTER_NAME }}
+      
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          context: .
+          platforms: linux/amd64
+          tags: ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            VITE_APP_NAVERMAPS_CLIENT_ID=${{ secrets.VITE_APP_NAVERMAPS_CLIENT_ID }}
+  
+      - name: Preset
+        run: |
+          kubectl create namespace ${{ env.NAMESPACE }} --dry-run=client -o yaml | sed /creationTimestamp/d | kubectl apply -f -
+      
+      - name: Secret
+        uses: azure/k8s-create-secret@v4
+        with:
+          container-registry-url: ${{ env.REGISTRY_NAME }}.azurecr.io
+          container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          secret-name: ${{ env.SECRET }}
+          namespace: ${{ env.NAMESPACE }}
+      
+      - name: Deploy
+        uses: azure/k8s-deploy@v4
+        with:
+          manifests: |
+            manifests/deployment.yaml
+            manifests/service.yaml
+            manifests/ingress.yaml
+          images: |
+            ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }}
+          imagepullsecrets: |
+            ${{ env.SECRET }}
+          namespace: ${{ env.NAMESPACE }}
+        
+        
+        

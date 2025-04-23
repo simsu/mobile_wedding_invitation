@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mobile-wedding
+  labels:
+    app: mobile-wedding
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: mobile-wedding
+  template:
+    metadata:
+      labels:
+        app: mobile-wedding
+    spec:
+      imagePullSecrets: []
+      containers:
+      - name: app
+        image: zeroumacr.azurecr.io/mobile-wedding
+        ports:
+        - containerPort: 8000
