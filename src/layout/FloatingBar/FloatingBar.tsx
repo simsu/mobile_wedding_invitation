@@ -24,8 +24,8 @@ const FloatingBar = ({ isVisible }: { isVisible: boolean }) => {
 
   const handleCopy = async () => {
     const shareData = {
-      title: "남현철 & 심수연, 결혼합니다!",
-      text: "2025년 04월 26일 (토) 13:00 서산 아르델 웨딩홀 ♥︎많관부♥︎",
+      title: "남신랑 & 여신부, 결혼합니다!",
+      text: "2025년 04월 26일 (토) 13:00 어딘가의 멋진 웨딩홀 ♥︎많관부♥︎",
       url: "",
     };
 
